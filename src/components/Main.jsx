@@ -3,11 +3,58 @@ import "./Main.css";
 import { Task } from "./Task";
 
 export const Main = (props) => {
+  const DAY = "@DAY";
+  const WEEK = "@WEEK";
+  const MONTH = "@MONTH";
+
   const [rangeValue, setRangeValue] = useState("");
   const [taskValue, setTaskvalue] = useState("");
-  const [dailyTask, setDailyTask] = useState(["기본값1", "기본값2"]);
-  const [weeklyTask, setWeeklyTask] = useState([]);
-  const [monthlyTask, setMonthlyTask] = useState([]);
+
+  const [dailyTask, setDailyTask] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = window.localStorage.getItem(DAY);
+      console.log(saved);
+      if (saved !== null) {
+        return JSON.parse(saved);
+      } else {
+        return [];
+      }
+    }
+  });
+  const [weeklyTask, setWeeklyTask] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = window.localStorage.getItem(WEEK);
+      console.log(saved);
+      if (saved !== null) {
+        return JSON.parse(saved);
+      } else {
+        return [];
+      }
+    }
+  });
+  const [monthlyTask, setMonthlyTask] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = window.localStorage.getItem(MONTH);
+      console.log(saved);
+      if (saved !== null) {
+        return JSON.parse(saved);
+      } else {
+        return [];
+      }
+    }
+  });
+
+  useEffect(() => {
+    window.localStorage.setItem(DAY, JSON.stringify(dailyTask));
+  }, [dailyTask]);
+
+  useEffect(() => {
+    window.localStorage.setItem(WEEK, JSON.stringify(weeklyTask));
+  }, [weeklyTask]);
+
+  useEffect(() => {
+    window.localStorage.setItem(MONTH, JSON.stringify(monthlyTask));
+  }, [monthlyTask]);
 
   const changeRangeValue = (e) => {
     setRangeValue(e.target.value);
