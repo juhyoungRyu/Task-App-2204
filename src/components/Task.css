@@ -1,0 +1,10 @@
+.Task {
+  margin: 0;
+  border: 1px solid;
+  border-top-width: 4px;
+  background-color: white;
+  border-left-color: rgba(87, 87, 87, 0.363);
+  border-right-color: rgba(87, 87, 87, 0.363);
+  border-bottom-color: rgba(87, 87, 87, 0.363);
+  border-radius: 20px;
+}
