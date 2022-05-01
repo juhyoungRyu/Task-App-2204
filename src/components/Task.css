@@ -6,5 +6,17 @@
   border-left-color: rgba(87, 87, 87, 0.363);
   border-right-color: rgba(87, 87, 87, 0.363);
   border-bottom-color: rgba(87, 87, 87, 0.363);
+  font-family: "Nanum Gothic", sans-serif;
   border-radius: 20px;
+}
+
+.task {
+  font-size: 18px;
+  margin: 0;
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+
+.task:first-child {
+  margin-top: 20px;
 }

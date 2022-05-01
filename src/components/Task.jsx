@@ -12,7 +12,9 @@ export const Task = (props) => {
       }}
     >
       {props.task.map((value, key) => (
-        <p key={key}>{value}</p>
+        <p className="task" key={key}>
+          {value}
+        </p>
       ))}
     </div>
   );

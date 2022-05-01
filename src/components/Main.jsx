@@ -103,6 +103,7 @@ export const Main = (props) => {
   return (
     <div className="Main">
       <section className="main-menu">
+        <h2 className="menuTitle">무엇이든지 할 수 있다!</h2>
         <input
           autoComplete="off"
           className="ipt"
@@ -132,7 +133,7 @@ export const Main = (props) => {
       <section className="all-daily">
         <Task
           color={"rgb(134 148 159)"}
-          width={30}
+          width={20}
           height={50}
           task={dailyTask}
           taskSet={setDailyTask}
@@ -141,14 +142,14 @@ export const Main = (props) => {
       <section className="all-other">
         <Task
           color={"rgb(254 204 94)"}
-          width={30}
+          width={20}
           height={45}
           task={weeklyTask}
           taskSet={setWeeklyTask}
         />
         <Task
           color={"rgb(138 189 203)"}
-          width={30}
+          width={20}
           height={20}
           task={monthlyTask}
           taskSet={setMonthlyTask}
