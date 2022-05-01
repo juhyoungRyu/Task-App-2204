@@ -103,14 +103,31 @@ export const Main = (props) => {
   return (
     <div className="Main">
       <section className="main-menu">
-        <input list="list" value={rangeValue} onChange={changeRangeValue} />
+        <input
+          autoComplete="off"
+          className="ipt"
+          list="list"
+          value={rangeValue}
+          onChange={changeRangeValue}
+        />
         <datalist id="list">
           <option value="Daily"></option>
           <option value="Weekly"></option>
           <option value="Monthly"></option>
         </datalist>
-        <input type="text" value={taskValue} onChange={changeTaskValue} />
-        <input type="submit" value="입력" onClick={clickBtn} />
+        <input
+          autoComplete="off"
+          className="ipt"
+          type="text"
+          value={taskValue}
+          onChange={changeTaskValue}
+        />
+        <input
+          className="button-18"
+          type="submit"
+          value="Submit"
+          onClick={clickBtn}
+        />
       </section>
       <section className="all-daily">
         <Task
