@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Main.css";
 import { Task } from "./Task";
-import Modal from "react-modal";
 
 export const Main = (props) => {
   const DAY = "@DAY";
@@ -56,11 +55,6 @@ export const Main = (props) => {
       }
     }
   });
-
-  const [modalOpen, setModalOpen] = useState(false);
-
-  const openModal = () => setModalOpen(true);
-  const closeModal = () => setModalOpen(false);
 
   useEffect(() => {
     window.localStorage.setItem(DAY, JSON.stringify(dailyTask));
@@ -118,16 +112,8 @@ export const Main = (props) => {
     return range[type]();
   };
 
-  Modal.setAppElement("#root");
-
   return (
     <div className="Main" id="main">
-      <Modal
-        className="modal"
-        isOpen={modalOpen}
-        onRequestClose={closeModal}
-        contentLabel={`${props.type} Task Setting`}
-      ></Modal>
       <section className="main-menu">
         <h2 className="menuTitle">무엇이든지 할 수 있다!</h2>
         <input
@@ -168,7 +154,6 @@ export const Main = (props) => {
           task={dailyTask}
           taskSet={setDailyTask}
           type={"Daily"}
-          openModal={openModal}
         />
       </section>
       <section className="all-other">
@@ -183,7 +168,6 @@ export const Main = (props) => {
           task={weeklyTask}
           taskSet={setWeeklyTask}
           type={"Weekly"}
-          openModal={openModal}
         />
         <Task
           color={"rgb(138 189 203)"}
@@ -196,7 +180,6 @@ export const Main = (props) => {
           task={monthlyTask}
           taskSet={setMonthlyTask}
           type={"Monthly"}
-          openModal={openModal}
         />
       </section>
     </div>

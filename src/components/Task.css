@@ -41,3 +41,29 @@
 .settingBtn {
   margin-right: 5%;
 }
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 200px;
+  height: 300px;
+}
+
+.react-responsive-modal-modal {
+  border-radius: 30px;
+}
+
+.exp {
+  font-weight: 100;
+  font-family: "Nanum Pen Script", cursive;
+  font-size: 20px;
+}
+
+.saveIpt {
+  font-weight: 100;
+  font-family: "Nanum Pen Script", cursive;
+  font-size: 15px;
+  margin-top: 10px;
+}
