@@ -10,6 +10,9 @@ export const NavBar = (props) => {
       </section>
       <section className="menuZone">
         {/* Btn List */}
+        <button className="menu-btn" onClick={() => props.typeSelect("All")}>
+          All
+        </button>
         <button className="menu-btn" onClick={() => props.typeSelect("Daily")}>
           Daily
         </button>

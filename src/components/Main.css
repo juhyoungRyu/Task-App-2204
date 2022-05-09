@@ -116,3 +116,15 @@
   font-weight: 100;
   font-family: "Nanum Pen Script", cursive;
 }
+
+.modal {
+  width: 500px;
+  height: 300px;
+  border-radius: 10px;
+  border: 0px transparent solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: "-50%";
+  transform: "translate(-50%, -50%)";
+}

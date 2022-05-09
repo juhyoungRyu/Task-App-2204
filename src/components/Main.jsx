@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Main.css";
 import { Task } from "./Task";
+import Modal from "react-modal";
 
 export const Main = (props) => {
   const DAY = "@DAY";
@@ -9,6 +10,18 @@ export const Main = (props) => {
 
   const [rangeValue, setRangeValue] = useState("");
   const [taskValue, setTaskvalue] = useState("");
+
+  const [dWidth, setDWidth] = useState(20);
+  const [wWidth, setWWidth] = useState(20);
+  const [mWidth, setMWidth] = useState(20);
+
+  const [dHeight, setDHeight] = useState(50);
+  const [wHeight, setWHeight] = useState(45);
+  const [mHeight, setMHeight] = useState(20);
+
+  const [dTSize, setDTSize] = useState(80);
+  const [wTSize, setWTSize] = useState(30);
+  const [mTSize, setMTSize] = useState(10);
 
   const [dailyTask, setDailyTask] = useState(() => {
     if (typeof window !== "undefined") {
@@ -43,6 +56,11 @@ export const Main = (props) => {
       }
     }
   });
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
 
   useEffect(() => {
     window.localStorage.setItem(DAY, JSON.stringify(dailyTask));
@@ -100,8 +118,16 @@ export const Main = (props) => {
     return range[type]();
   };
 
+  Modal.setAppElement("#root");
+
   return (
-    <div className="Main">
+    <div className="Main" id="main">
+      <Modal
+        className="modal"
+        isOpen={modalOpen}
+        onRequestClose={closeModal}
+        contentLabel={`${props.type} Task Setting`}
+      ></Modal>
       <section className="main-menu">
         <h2 className="menuTitle">무엇이든지 할 수 있다!</h2>
         <input
@@ -133,26 +159,44 @@ export const Main = (props) => {
       <section className="all-daily">
         <Task
           color={"rgb(134 148 159)"}
-          width={20}
-          height={50}
+          width={dWidth}
+          height={dHeight}
+          titleSize={dTSize}
+          setWidth={setDWidth}
+          setHeight={setDHeight}
+          setTSize={setDTSize}
           task={dailyTask}
           taskSet={setDailyTask}
+          type={"Daily"}
+          openModal={openModal}
         />
       </section>
       <section className="all-other">
         <Task
           color={"rgb(254 204 94)"}
-          width={20}
-          height={45}
+          width={wWidth}
+          height={wHeight}
+          titleSize={wTSize}
+          setWidth={setWWidth}
+          setHeight={setWHeight}
+          setTSize={setWTSize}
           task={weeklyTask}
           taskSet={setWeeklyTask}
+          type={"Weekly"}
+          openModal={openModal}
         />
         <Task
           color={"rgb(138 189 203)"}
-          width={20}
-          height={20}
+          width={mWidth}
+          height={mHeight}
+          titleSize={mTSize}
+          setWidth={setMWidth}
+          setHeight={setMHeight}
+          setTSize={setMTSize}
           task={monthlyTask}
           taskSet={setMonthlyTask}
+          type={"Monthly"}
+          openModal={openModal}
         />
       </section>
     </div>
