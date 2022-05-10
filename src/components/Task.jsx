@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import "./Task.css";
 import { FiSettings } from "react-icons/fi";
+import { BsCircle } from "react-icons/bs";
+import { BsCircleFill } from "react-icons/bs";
+import { RiDeleteBin5Line } from "react-icons/ri";
+import { BiEditAlt } from "react-icons/bi";
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
 
@@ -39,9 +43,9 @@ export const Task = (props) => {
       <Modal open={open} onClose={closeModal} center>
         <div className="modal">
           <p className="exp">[{props.type}] Setting Modal</p>
-          <input type={"number"} onChange={onWidthChange} />
-          <input type={"number"} onChange={onHeightChange} />
-          <input type={"number"} onChange={onTitleChange} />
+          <input className="ipt2" type={"number"} onChange={onWidthChange} />
+          <input className="ipt2" type={"number"} onChange={onHeightChange} />
+          <input className="ipt2" type={"number"} onChange={onTitleChange} />
           <section>
             <input
               className="saveIpt"
@@ -64,9 +68,42 @@ export const Task = (props) => {
       </div>
       {props.task.map((value, key) => (
         <div className="taskCon">
-          <p className="task" key={key}>
-            {value}
-          </p>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "flex-start",
+              alignItems: "center",
+              width: "100%",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "flex-start",
+                alignItems: "center",
+                width: "60%",
+              }}
+            >
+              <BsCircle className="check"></BsCircle>
+              <p className="task" key={key}>
+                {value}
+              </p>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "flex-end",
+                alignItems: "center",
+                width: "40%",
+              }}
+            >
+              <BiEditAlt className="edit" />
+              <RiDeleteBin5Line className="del" />
+            </div>
+          </div>
           <div className="lineCon">
             <hr className="line" />
           </div>
