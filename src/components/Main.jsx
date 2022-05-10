@@ -16,11 +16,11 @@ export const Main = (props) => {
 
   const [dHeight, setDHeight] = useState(50);
   const [wHeight, setWHeight] = useState(45);
-  const [mHeight, setMHeight] = useState(20);
+  const [mHeight, setMHeight] = useState(30);
 
-  const [dTSize, setDTSize] = useState(80);
+  const [dTSize, setDTSize] = useState(30);
   const [wTSize, setWTSize] = useState(30);
-  const [mTSize, setMTSize] = useState(10);
+  const [mTSize, setMTSize] = useState(25);
 
   const [dailyTask, setDailyTask] = useState(() => {
     if (typeof window !== "undefined") {

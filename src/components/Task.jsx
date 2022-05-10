@@ -63,9 +63,14 @@ export const Task = (props) => {
         />
       </div>
       {props.task.map((value, key) => (
-        <p className="task" key={key}>
-          {value}
-        </p>
+        <div className="taskCon">
+          <p className="task" key={key}>
+            {value}
+          </p>
+          <div className="lineCon">
+            <hr className="line" />
+          </div>
+        </div>
       ))}
     </div>
   );
