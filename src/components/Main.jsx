@@ -135,9 +135,7 @@ export const Main = (props) => {
       daily: () => {
         let a = [...dailyTask];
         let b = a.findIndex((i) => i.id === id);
-        console.log(id, b + "번입니다.");
         a[b].check = !a[b].check;
-        console.log(a[b].check);
         setDailyTask(a);
       },
       weekly: () => {
@@ -155,7 +153,7 @@ export const Main = (props) => {
         setMonthlyTask(a);
       },
     };
-    return change["daily"]();
+    return change[type]();
   };
 
   return (
@@ -215,6 +213,7 @@ export const Main = (props) => {
           task={weeklyTask}
           taskSet={setWeeklyTask}
           type={"Weekly"}
+          check={chackChange}
         />
         <Task
           color={"rgb(138 189 203)"}
@@ -227,6 +226,7 @@ export const Main = (props) => {
           task={monthlyTask}
           taskSet={setMonthlyTask}
           type={"Monthly"}
+          check={chackChange}
         />
       </section>
     </div>

@@ -72,8 +72,8 @@ export const Task = (props) => {
           onClick={openModal}
         />
       </div>
-      {props.task.map((value) => (
-        <div key={value.num} className="taskCon">
+      {props.task.map((value, key) => (
+        <div key={key} className="taskCon">
           <div
             style={{
               display: "flex",
@@ -93,15 +93,18 @@ export const Task = (props) => {
               }}
             >
               {value.check ? (
-                <BsCircleFill className="check" />
+                <BsCircleFill
+                  className="check"
+                  onClick={() => props.check(value.id, value.type)}
+                />
               ) : (
                 <BsCircle
-                  onClick={() => props.check(value.id, value.type, value.task)}
+                  onClick={() => props.check(value.id, value.type)}
                   className="check"
                 />
               )}
 
-              <p className="task">{value.task}</p>
+              <p className={value.check ? "endTask" : "task"}>{value.task}</p>
             </div>
             <div
               style={{

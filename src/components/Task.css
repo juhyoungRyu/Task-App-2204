@@ -141,6 +141,17 @@
   cursor: pointer;
 }
 
+.endTask {
+  cursor: pointer;
+  font-size: 15px;
+  margin: 0;
+  display: flex;
+  margin-left: 2%;
+  flex-direction: row;
+  align-items: flex-start;
+  text-decoration: line-through;
+}
+
 .del {
   margin-right: 25%;
   margin-left: 3%;
