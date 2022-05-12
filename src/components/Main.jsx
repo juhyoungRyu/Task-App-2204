@@ -92,24 +92,70 @@ export const Main = (props) => {
     const range = {
       Daily: () => {
         let day = [...dailyTask];
-        day.push(value);
+        day.push({
+          id: Date.now(),
+          type: "daily",
+          task: value,
+          check: false,
+          num: day.length,
+        });
 
         setDailyTask(day);
       },
       Weekly: () => {
         let week = [...weeklyTask];
-        week.push(value);
+        week.push({
+          id: Date.now(),
+          type: "weekly",
+          task: value,
+          check: false,
+          num: week.length,
+        });
 
         setWeeklyTask(week);
       },
       Monthly: () => {
         let month = [...monthlyTask];
-        month.push(value);
+        month.push({
+          id: Date.now(),
+          type: "monthly",
+          task: value,
+          check: false,
+          num: month.length,
+        });
 
         setMonthlyTask(month);
       },
     };
     return range[type]();
+  };
+
+  const chackChange = (id, type) => {
+    const change = {
+      daily: () => {
+        let a = [...dailyTask];
+        let b = a.findIndex((i) => i.id === id);
+        console.log(id, b + "번입니다.");
+        a[b].check = !a[b].check;
+        console.log(a[b].check);
+        setDailyTask(a);
+      },
+      weekly: () => {
+        let a = [...weeklyTask];
+        let b = a.findIndex((i) => (i.id = id));
+        a[b].check = !a[b].check;
+
+        setWeeklyTask(a);
+      },
+      monthly: () => {
+        let a = [...monthlyTask];
+        let b = a.findIndex((i) => (i.id = id));
+        a[b].check = !a[b].check;
+
+        setMonthlyTask(a);
+      },
+    };
+    return change["daily"]();
   };
 
   return (
@@ -154,6 +200,7 @@ export const Main = (props) => {
           task={dailyTask}
           taskSet={setDailyTask}
           type={"Daily"}
+          check={chackChange}
         />
       </section>
       <section className="all-other">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Task.css";
 import { FiSettings } from "react-icons/fi";
 import { BsCircle } from "react-icons/bs";
@@ -43,7 +43,13 @@ export const Task = (props) => {
       <Modal open={open} onClose={closeModal} center>
         <div className="modal">
           <p className="exp">[{props.type}] Setting Modal</p>
-          <input className="ipt2" type={"number"} onChange={onWidthChange} />
+          <input
+            className="ipt2"
+            type={"number"}
+            onChange={onWidthChange}
+            min={"1"}
+            max={"34"}
+          />
           <input className="ipt2" type={"number"} onChange={onHeightChange} />
           <input className="ipt2" type={"number"} onChange={onTitleChange} />
           <section>
@@ -66,8 +72,8 @@ export const Task = (props) => {
           onClick={openModal}
         />
       </div>
-      {props.task.map((value, key) => (
-        <div className="taskCon">
+      {props.task.map((value) => (
+        <div key={value.num} className="taskCon">
           <div
             style={{
               display: "flex",
@@ -86,10 +92,16 @@ export const Task = (props) => {
                 width: "60%",
               }}
             >
-              <BsCircle className="check"></BsCircle>
-              <p className="task" key={key}>
-                {value}
-              </p>
+              {value.check ? (
+                <BsCircleFill className="check" />
+              ) : (
+                <BsCircle
+                  onClick={() => props.check(value.id, value.type, value.task)}
+                  className="check"
+                />
+              )}
+
+              <p className="task">{value.task}</p>
             </div>
             <div
               style={{
