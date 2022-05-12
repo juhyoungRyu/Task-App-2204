@@ -25,7 +25,6 @@ export const Main = (props) => {
   const [dailyTask, setDailyTask] = useState(() => {
     if (typeof window !== "undefined") {
       const saved = window.localStorage.getItem(DAY);
-      console.log(saved);
       if (saved !== null) {
         return JSON.parse(saved);
       } else {
@@ -36,7 +35,6 @@ export const Main = (props) => {
   const [weeklyTask, setWeeklyTask] = useState(() => {
     if (typeof window !== "undefined") {
       const saved = window.localStorage.getItem(WEEK);
-      console.log(saved);
       if (saved !== null) {
         return JSON.parse(saved);
       } else {
@@ -47,7 +45,6 @@ export const Main = (props) => {
   const [monthlyTask, setMonthlyTask] = useState(() => {
     if (typeof window !== "undefined") {
       const saved = window.localStorage.getItem(MONTH);
-      console.log(saved);
       if (saved !== null) {
         return JSON.parse(saved);
       } else {
@@ -140,20 +137,35 @@ export const Main = (props) => {
       },
       weekly: () => {
         let a = [...weeklyTask];
-        let b = a.findIndex((i) => (i.id = id));
+        let b = a.findIndex((i) => i.id === id);
         a[b].check = !a[b].check;
 
         setWeeklyTask(a);
       },
       monthly: () => {
         let a = [...monthlyTask];
-        let b = a.findIndex((i) => (i.id = id));
+        let b = a.findIndex((i) => i.id === id);
         a[b].check = !a[b].check;
 
         setMonthlyTask(a);
       },
     };
     return change[type]();
+  };
+
+  const delItem = (type, id) => {
+    const del = {
+      daily: () => {
+        let a = [...dailyTask];
+        let b = a.findIndex((i) => i.id === id);
+        // a.remove(a[b]);
+        a.splice(b, 1);
+        setDailyTask(a);
+        // console.log(type, id, a[b]);
+      },
+    };
+
+    return del[type]();
   };
 
   return (
@@ -199,6 +211,7 @@ export const Main = (props) => {
           taskSet={setDailyTask}
           type={"Daily"}
           check={chackChange}
+          del={delItem}
         />
       </section>
       <section className="all-other">
@@ -214,6 +227,7 @@ export const Main = (props) => {
           taskSet={setWeeklyTask}
           type={"Weekly"}
           check={chackChange}
+          del={delItem}
         />
         <Task
           color={"rgb(138 189 203)"}
@@ -227,6 +241,7 @@ export const Main = (props) => {
           taskSet={setMonthlyTask}
           type={"Monthly"}
           check={chackChange}
+          del={delItem}
         />
       </section>
     </div>

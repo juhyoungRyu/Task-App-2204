@@ -10,13 +10,22 @@ import { Modal } from "react-responsive-modal";
 
 export const Task = (props) => {
   const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
 
   const openModal = () => {
     setOpen(true);
   };
 
+  const openModal2 = () => {
+    setOpen2(true);
+  };
+
   const closeModal = () => {
     setOpen(false);
+  };
+
+  const closeModal2 = () => {
+    setOpen2(false);
   };
 
   const onWidthChange = (e) => {
@@ -116,7 +125,14 @@ export const Task = (props) => {
               }}
             >
               <BiEditAlt className="edit" />
-              <RiDeleteBin5Line className="del" />
+              <RiDeleteBin5Line
+                className="del"
+                onClick={() => {
+                  if (window.confirm("정말 삭제하겠습니까?") === true) {
+                    props.del(value.type, value.id);
+                  }
+                }}
+              />
             </div>
           </div>
           <div className="lineCon">

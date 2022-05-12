@@ -54,6 +54,15 @@
   height: 300px;
 }
 
+.modal2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 250px;
+  height: 100px;
+}
+
 .react-responsive-modal-modal {
   border-radius: 30px;
 }
