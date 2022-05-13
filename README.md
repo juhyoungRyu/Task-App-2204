@@ -8,6 +8,7 @@ Daily & Weekly & Monthly Task Web App입니다.<br />
 
 각 Task 별 삭제 기능을 추가했습니다.<br />
 각 Task 별 수정 기능을 추가할 예정입니다<br />
+.
 
 ---
 🚀 framework : React JS 
