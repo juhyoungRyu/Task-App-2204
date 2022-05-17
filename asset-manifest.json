@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Task-App-2205/static/css/main.b52e0588.css",
+    "main.js": "/Task-App-2205/static/js/main.c55a1e69.js",
+    "static/js/787.ae9c0800.chunk.js": "/Task-App-2205/static/js/787.ae9c0800.chunk.js",
+    "index.html": "/Task-App-2205/index.html",
+    "main.b52e0588.css.map": "/Task-App-2205/static/css/main.b52e0588.css.map",
+    "main.c55a1e69.js.map": "/Task-App-2205/static/js/main.c55a1e69.js.map",
+    "787.ae9c0800.chunk.js.map": "/Task-App-2205/static/js/787.ae9c0800.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b52e0588.css",
+    "static/js/main.c55a1e69.js"
+  ]
+}
