@@ -95,6 +95,7 @@ export const Main = (props) => {
           task: value,
           check: false,
           num: day.length,
+          edit: false,
         });
 
         setDailyTask(day);
@@ -107,6 +108,7 @@ export const Main = (props) => {
           task: value,
           check: false,
           num: week.length,
+          edit: false,
         });
 
         setWeeklyTask(week);
@@ -119,6 +121,7 @@ export const Main = (props) => {
           task: value,
           check: false,
           num: month.length,
+          edit: false,
         });
 
         setMonthlyTask(month);
@@ -163,9 +166,39 @@ export const Main = (props) => {
         setDailyTask(a);
         // console.log(type, id, a[b]);
       },
+      weekly: () => {
+        let a = [...weeklyTask];
+        let b = a.findIndex((i) => i.id === id);
+        a.splice(b, 1);
+        setWeeklyTask(a);
+      },
+      monthly: () => {
+        let a = [...monthlyTask];
+        let b = a.findIndex((i) => i.id === id);
+        a.splice(b, 1);
+        setWeeklyTask(a);
+      },
     };
 
     return del[type]();
+  };
+
+  const editItem = (type, id, set, editValue) => {
+    const edit = {
+      daily: () => {
+        let a = [...dailyTask];
+        let b = a.findIndex((i) => i.id === id);
+        if (!set) {
+          a[b].edit = !a[b].edit;
+          return setDailyTask(a);
+        } else {
+          a[b].task = editValue;
+          a[b].edit = !a[b].edit;
+          return setDailyTask(a);
+        }
+      },
+    };
+    return edit[type]();
   };
 
   return (
@@ -212,6 +245,7 @@ export const Main = (props) => {
           type={"Daily"}
           check={chackChange}
           del={delItem}
+          edit={editItem}
         />
       </section>
       <section className="all-other">
