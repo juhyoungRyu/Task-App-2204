@@ -1,31 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Task.css";
 import { FiSettings } from "react-icons/fi";
 import { BsCircle } from "react-icons/bs";
 import { BsCircleFill } from "react-icons/bs";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { BiEditAlt } from "react-icons/bi";
+import { FaCheck } from "react-icons/fa";
 import "react-responsive-modal/styles.css";
 import { Modal } from "react-responsive-modal";
 
 export const Task = (props) => {
   const [open, setOpen] = useState(false);
-  const [open2, setOpen2] = useState(false);
+  const [edit, setEdit] = useState("");
+
+  const changeEdit = (e) => {
+    setEdit(e.target.value);
+  };
 
   const openModal = () => {
     setOpen(true);
   };
 
-  const openModal2 = () => {
-    setOpen2(true);
-  };
-
   const closeModal = () => {
     setOpen(false);
-  };
-
-  const closeModal2 = () => {
-    setOpen2(false);
   };
 
   const onWidthChange = (e) => {
@@ -81,65 +78,120 @@ export const Task = (props) => {
           onClick={openModal}
         />
       </div>
-      {props.task.map((value, key) => (
-        <div key={key} className="taskCon">
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "flex-start",
-              alignItems: "center",
-              width: "100%",
-            }}
-          >
+      {props.task.map((value, key) =>
+        value.edit ? (
+          <div key={key} className="taskCon">
             <div
               style={{
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "flex-start",
                 alignItems: "center",
-                width: "60%",
+                width: "100%",
               }}
             >
-              {value.check ? (
-                <BsCircleFill
-                  className="check"
-                  onClick={() => props.check(value.id, value.type)}
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  width: "60%",
+                }}
+              >
+                <input
+                  className="editForm"
+                  value={edit}
+                  onChange={changeEdit}
                 />
-              ) : (
-                <BsCircle
-                  onClick={() => props.check(value.id, value.type)}
-                  className="check"
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "flex-end",
+                  alignItems: "center",
+                  width: "40%",
+                }}
+              >
+                <FaCheck
+                  className="editSol"
+                  onClick={() => {
+                    props.edit(value.type, value.id, true, edit);
+                  }}
                 />
-              )}
-
-              <p className={value.check ? "endTask" : "task"}>{value.task}</p>
+              </div>
             </div>
+            <div className="lineCon">
+              <hr className="line" />
+            </div>
+          </div>
+        ) : (
+          <div key={key} className="taskCon">
             <div
               style={{
                 display: "flex",
                 flexDirection: "row",
-                justifyContent: "flex-end",
+                justifyContent: "flex-start",
                 alignItems: "center",
-                width: "40%",
+                width: "100%",
               }}
             >
-              <BiEditAlt className="edit" />
-              <RiDeleteBin5Line
-                className="del"
-                onClick={() => {
-                  if (window.confirm("정말 삭제하겠습니까?") === true) {
-                    props.del(value.type, value.id);
-                  }
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "flex-start",
+                  alignItems: "center",
+                  width: "60%",
                 }}
-              />
+              >
+                {value.check ? (
+                  <BsCircleFill
+                    className="check"
+                    onClick={() => props.check(value.id, value.type)}
+                  />
+                ) : (
+                  <BsCircle
+                    onClick={() => props.check(value.id, value.type)}
+                    className="check"
+                  />
+                )}
+
+                <p className={value.check ? "endTask" : "task"}>{value.task}</p>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "flex-end",
+                  alignItems: "center",
+                  width: "40%",
+                }}
+              >
+                <BiEditAlt
+                  className="edit"
+                  onClick={() => {
+                    setEdit(value.task);
+                    props.edit(value.type, value.id, false, value.task);
+                  }}
+                />
+                <RiDeleteBin5Line
+                  className="del"
+                  onClick={() => {
+                    if (window.confirm("정말 삭제하겠습니까?") === true) {
+                      props.del(value.type, value.id);
+                    }
+                  }}
+                />
+              </div>
+            </div>
+            <div className="lineCon">
+              <hr className="line" />
             </div>
           </div>
-          <div className="lineCon">
-            <hr className="line" />
-          </div>
-        </div>
-      ))}
+        )
+      )}
     </div>
   );
 };
