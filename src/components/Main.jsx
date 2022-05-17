@@ -197,6 +197,30 @@ export const Main = (props) => {
           return setDailyTask(a);
         }
       },
+      weekly: () => {
+        let a = [...weeklyTask];
+        let b = a.findIndex((i) => i.id === id);
+        if (!set) {
+          a[b].edit = !a[b].edit;
+          return setWeeklyTask(a);
+        } else {
+          a[b].task = editValue;
+          a[b].edit = !a[b].edit;
+          return setWeeklyTask(a);
+        }
+      },
+      monthly: () => {
+        let a = [...monthlyTask];
+        let b = a.findIndex((i) => i.id === id);
+        if (!set) {
+          a[b].edit = !a[b].edit;
+          return setMonthlyTask(a);
+        } else {
+          a[b].task = editValue;
+          a[b].edit = !a[b].edit;
+          return setMonthlyTask(a);
+        }
+      },
     };
     return edit[type]();
   };
@@ -262,6 +286,7 @@ export const Main = (props) => {
           type={"Weekly"}
           check={chackChange}
           del={delItem}
+          edit={editItem}
         />
         <Task
           color={"rgb(138 189 203)"}
@@ -276,6 +301,7 @@ export const Main = (props) => {
           type={"Monthly"}
           check={chackChange}
           del={delItem}
+          edit={editItem}
         />
       </section>
     </div>
