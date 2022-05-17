@@ -10,22 +10,13 @@ import { Modal } from "react-responsive-modal";
 
 export const Task = (props) => {
   const [open, setOpen] = useState(false);
-  const [open2, setOpen2] = useState(false);
 
   const openModal = () => {
     setOpen(true);
   };
 
-  const openModal2 = () => {
-    setOpen2(true);
-  };
-
   const closeModal = () => {
     setOpen(false);
-  };
-
-  const closeModal2 = () => {
-    setOpen2(false);
   };
 
   const onWidthChange = (e) => {
