@@ -179,6 +179,12 @@
 
 .editForm {
   margin-left: 25%;
+  border: 0px solid transparent;
+  font-size: 15px;
+}
+
+.editForm:focus {
+  outline: none;
 }
 
 .ipt2 {

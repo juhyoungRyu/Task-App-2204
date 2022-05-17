@@ -11,22 +11,16 @@ import { Modal } from "react-responsive-modal";
 
 export const Task = (props) => {
   const [open, setOpen] = useState(false);
-<<<<<<< HEAD
-=======
   const [edit, setEdit] = useState("");
->>>>>>> 4813a0ec68425b5476f0faeda0ed47c6e9eaee08
 
   const changeEdit = (e) => {
     setEdit(e.target.value);
   };
 
-<<<<<<< HEAD
-=======
   const openModal = () => {
     setOpen(true);
   };
 
->>>>>>> 4813a0ec68425b5476f0faeda0ed47c6e9eaee08
   const closeModal = () => {
     setOpen(false);
   };
